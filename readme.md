@@ -11,6 +11,7 @@ MonProjet est un site internet présentant des peintures
 * Symfony CLI
 * Docker
 * Docker-Composer
+* nodejs et npm
 
 Vous pouvez vérifier les prérequis (sauf Docker_composer) avec la commande suivante (de la CLI Symfont) :
 
@@ -21,6 +22,9 @@ symfony check:requirements
 ### lancer l'environnement de développement
 
 ```bash
+composer install 
+npm install
+npm run build
 docker-composer up -d
 symfony serve -d
 ```
