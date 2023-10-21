@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>
+			{% block title %}Login
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<body>
+		<!-- CONTENT -->
+		<section>
+			<div class="container d-flex flex-column">
+				<div class="row align-items-center justify-content-center gx-0 min-vh-100">
+					<div
+						class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+
+						<!-- Heading -->
+						<h1 class="mb-0 fw-bold">
+							Ouvrir une session
+						</h1>
+
+						<!-- Text -->
+						<p class="mb-6 text-muted">
+							Administration du site internet.
+						</p>
+
+						<!-- Form -->
+						<form method="post" class="mb-6">
+							{% if error %}
+								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							{% endif %}
+
+							{% if app.user %}
+								<div class="mb-3">
+									You are logged in as
+									{{ app.user.userIdentifier }},
+									<a href="{{ path('app_logout') }}">Logout</a>
+								</div>
+							{% endif %}
+
+							<!-- Email -->
+                             <div class="form-group">
+							    <label for="inputEmail">Email</label>
+							    <input type="email" value="{{ last_username }}" name="inputEmail" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-5"> 
+							    <label for="inputPassword">Password</label>
+							    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                            </div>
+
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+							<!-- Submit -->
+							<button class="btn w-100 btn-primary" type="submit">
+								Connexion
+							</button>
+						</form>
+					</div>
+
+					<div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block"  data-aos="fade-left">
+
+						<!-- Image -->
+						<div class="h-100 w-cover bg-cover" style="background-image: url(https://picsum.photos/2000);"></div>
+
+						<!-- Shape -->
+						<div class="shape shape-start shape-fluid-y text-white">
+							<svg viewbox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v386l-50 772v386H0V0z" fill="currentColor"/></svg>
+						</div>
+
+					</div>
+				</div>
+				<!-- / .row -->
+			</div>
+			<!-- / .container -->
+		</section>
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+	</body>
+</html>
