@@ -30,14 +30,22 @@ symfony serve -d
 ```
 
 ### Ajouter des données de tests
+
 ```bash
 composer require --dev orm-fixtures
 composer require fakerphp/faker
 composer require bluemmb/faker-picsum-photos-provider ^2.0
  symfony console d:f:l
 ```
+
 ## Lancer des tests
 
 ```bash
 php bin/phpunit --testdox
+```
+
+## Mettre en place une pagination
+
+```bash
+ composer require knplabs/knp-paginator-bundle
 ```

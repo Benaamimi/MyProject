@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A Propos{% endblock %}
+
+{% block body %}
+
+    <section data-jarallax data-speed=".8" class="py-10 py-md-14 overlay overlay-black overlay-60 bg-cover jarallax" style="background-image: url(https://picsum.photos/2000);">
+      <div class="container">
+        <div class="row justify-content-start">
+          <div class="col-12 col-md-10 col-lg-8 text-star">
+
+            <!-- Heading -->
+            <h1 class="display-2 text-white">
+              {{ peintre.prenom }} {{ peintre.nom }}
+            </h1>
+
+            <!-- Text -->
+            <p class="lead text-white-75 mb-6">
+              {{ peintre.aPropos }}
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+{% endblock %}
