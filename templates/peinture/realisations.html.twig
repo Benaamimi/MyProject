@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réalisations
+{% endblock %}
+
+{% block body %}
+
+
+<!-- ARTICLES -->
+	<section class="pt-7 pt-md-10">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-12">
+
+					<!-- Heading -->
+					<h2 class="mb-0">
+						Dérnières réalisations
+					</h2>
+
+					<!-- Text -->
+					<p class="mb-5 text-muted">
+						These can be split into smaller grid sizes, though we recommend half or thirds
+					</p>
+
+
+			</div>
+
+			{% for peinture in peintures %}
+				<div
+					class="col-12 col-md-6 d-flex">
+
+					<!-- Card -->
+					<div
+						class="card shadow-light-lg mb-6 lift lift-lg">
+
+
+						<!-- Image -->
+						<a class="card-img-top" href="#!">
+							<img src="{{ asset(peinture.file) }}" alt="..." class="card-img-top">
+						</a>
+
+						<a
+							class="card-body" href="#!">
+							<!-- Heading -->
+							<h3>
+								{{ peinture.nom }}
+							</h3>
+
+							<!-- Text -->
+							<p class="mb-0 text-muted">
+								{{ peinture.description | u.truncate(100, '...', false) }}
+							</p>
+
+						</a>
+
+						<!-- Meta -->
+						<a
+							class="card-meta mt-auto" href="#!">
+
+							<!-- Divider -->
+							<hr
+							class="card-meta-divider">
+
+
+							<!-- Date -->
+							<p class="h6 text-uppercase text-muted mb-0 ms-auto">
+								<time datetime="2023-10-22">Ajoutée le
+									{{ peinture.createdAt | date('d/m/Y') }}</time>
+							</p>
+
+						</a>
+
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+			<!-- / .row -->
+
+		<!-- / .row -->
+
+			<!-- / .container -->
+		</section>
+		<div class="d-flex justify-content-center my-5">
+			{% do peintures.setPageRange(2) %}
+			{{ knp_pagination_render(peintures, 'base/_pagination.html.twig') }}
+		</div>
+
+	{% endblock %}

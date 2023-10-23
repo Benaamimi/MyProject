@@ -2,15 +2,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Blogpost;
-use App\Entity\Categorie;
-use App\Entity\Peinture;
-use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Entity\User;
+use App\Entity\Blogpost;
+use App\Entity\Peinture;
+use App\Entity\Categorie;
+use Bluemmb\Faker\PicsumPhotosProvider;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -26,6 +27,8 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
+        $faker->addProvider(new PicsumPhotosProvider($faker));
+
 
         // création des users 
             $user = new User;
@@ -83,8 +86,8 @@ class AppFixtures extends Fixture
                         ->setDescription($faker->text())
                         ->setPortfolio($faker->randomElement([true, false]))
                         ->setSlug(strtolower($this->slugger->slug($peinture->getNom())))
-                        ->setFile($faker->imageUrl(400, 400, true))
-                        // ->setFile('https://picsum.photos/seed/picsum/400/400')
+                        ->setFile($faker->imageUrl(1000,1000, true))
+                        // ->setFile('https://picsum.photos/400/400?random')
                         ->addCategorie($categorie)
                         ->setPrix($faker->randomFloat(2, 100, 9999))
                         ->setUser($user) 
