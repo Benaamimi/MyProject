@@ -33,6 +33,7 @@ symfony serve -d
 ```bash
 composer require --dev orm-fixtures
 composer require fakerphp/faker
+composer require bluemmb/faker-picsum-photos-provider ^2.0
  symfony console d:f:l
 ```
 ## Lancer des tests
