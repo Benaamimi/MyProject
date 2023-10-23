@@ -29,6 +29,12 @@ docker-composer up -d
 symfony serve -d
 ```
 
+### Ajouter des données de tests
+```bash
+composer require --dev orm-fixtures
+composer require fakerphp/faker
+ symfony console d:f:l
+```
 ## Lancer des tests
 
 ```bash
