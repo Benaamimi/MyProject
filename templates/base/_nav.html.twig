@@ -4,11 +4,11 @@
 		class="container">
 
 		<!-- Brand -->
-		{# <a class="navbar-brand" href="./index.html">
-			<img src="/img/diamant-logo.png" class="navbar-brand-img" alt="...">
-		</a> #}
+		<a class="navbar-brand" href="{{ path('home') }}">
+			{# <img src="/img/diamant-logo.png" class="navbar-brand-img" alt="..."> #}
+			<h2 class="fw-bolder text-primary">TarikBen.</h2>
+		</a>
 
-		<h2 class="fw-bolder text-primary">TarikBen.</h2>
         
 
 		<!-- Toggler -->
@@ -28,10 +28,10 @@
 			<!-- Navigation -->
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item dropdown">
-					<a href="#" class="nav-link">Réalisations</a>
+					<a href="{{ path('realisations') }}" class="nav-link">Réalisations</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="#" class="nav-link">Actualités</a>
+					<a href="{{ path('actualites') }}" class="nav-link">Actualités</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">

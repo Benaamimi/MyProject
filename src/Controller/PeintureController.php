@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PeintureController extends AbstractController
 {
-    #[Route('/realisations', name: 'app_realisations')]
+    #[Route('/realisations', name: 'realisations')]
     public function realisations(PeintureRepository $peintureRepository, PaginatorInterface $paginator, Request $request): Response
     {
 
