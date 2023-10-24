@@ -27,7 +27,7 @@
 						<div class="row gx-0">
 
 							<a
-								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{ peinture.file }});" href="#!">
+								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{ peinture.file }});" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
 
 								<!-- Image (placeholder) -->
 								<img
@@ -44,7 +44,7 @@
 
 								<!-- Body -->
 								<a
-									class="card-body" href="#!">
+									class="card-body" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
 
 									<!-- Heading -->
 									<h3>
@@ -59,7 +59,7 @@
 								</a>
 
 								<!-- Meta -->
-								<a
+								<div
 									class="card-meta">
 
 									<!-- Divider -->
@@ -72,7 +72,7 @@
 											{{ peinture.createdAt | date('d/m/Y') }}</time>
 									</p>
 
-								</a>
+								</div>
 
 							</div>
 
