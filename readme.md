@@ -49,3 +49,9 @@ php bin/phpunit --testdox
 ```bash
  composer require knplabs/knp-paginator-bundle
 ```
+
+## Création de fonction twig
+
+```bash
+ symfony console make:twig-extension
+```
