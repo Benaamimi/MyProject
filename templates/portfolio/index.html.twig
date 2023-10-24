@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio
+{% endblock %}
+
+{% block body %}
+	<section data-jarallax data-speed=".8" class="pt-12 pt-md-14 pb-12 pb-md-15 overlay overlay-black overlay-60 bg-cover jarallax" style="margin-top: -87px; background-image: url(https://picsum.photos/2000);">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div
+					class="col-12 col-md-10 col-lg-7 text-center">
+
+					<!-- Headin -->
+					<h1 class="display-2 fw-bold text-white">
+						Portfolio
+					</h1>
+
+					<!-- Text -->
+					<p class="lead text-white-75 mb-4">
+						We design  build products, tools, apps, and sites for companies trying to do great things for our planet.
+					</p>
+				</div>
+			</div>
+			<!-- / .row -->
+		</div>
+		<!-- / .container -->
+	</section>
+
+
+	<div class="position-relative">
+		<div class="shape shape-bottom shape-fluid-x text-light">
+			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+		</div>
+	</div>
+
+	<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+		<div class="container">
+			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
+
+				{% for categorie in categories %}
+					{# on stock categorie.peintures pour acceder au peintures dans la varaible img pour l'apeller ici bas et last pour recupérer la derniere valeur de cette collections  #}
+					{% set img = categorie.peintures|last %}
+						<div class="col-12 col-md-6 resources">
+							<a class="card shadow-light-lg mb-7" href="{{ path('portfolio_categorie', {'slug': categorie.slug}) }}">
+
+							<!-- Image -->
+							<div class="card-zoom">
+                                {# apeller la variable img.file pour acceder au chemin pour l'image  #}
+								<img class="card-img" src="{{ img.file }}" alt="...">
+							</div>
+
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom }}</h6>
+
+									<!-- Heading -->
+									<h4 class="mb-0">{{ categorie.description }}</h4>
+
+								</div>
+							</div>
+
+						</a>
+
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
