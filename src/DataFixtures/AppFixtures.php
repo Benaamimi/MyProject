@@ -32,23 +32,22 @@ class AppFixtures extends Fixture
 
         // création des users 
             $user = new User;
+
+            $password = $this->hasher->hashPassword($user, 'password');
     
-            $user->setEmail("user@test.com")
+            $user->setEmail('user@test.com')
                 ->setPrenom($faker->firstName())
                 ->setNom($faker->lastName())
+                ->setPassword($password)
                 ->setTelephone($faker->phoneNumber())
                 ->setAPropos($faker->text(400))
                 ->setInstagram('instagram')
                 ->setRoles(['ROLE_PEINTRE'])
             ;
     
-            $password = $this->hasher->hashPassword($user, 'password');
-            $user->setPassword($password);
-    
             $manager->persist($user);
+
        
-
-
         // création de 10 Blogpost
         for($i = 0; $i < 10; $i++){
             $blogPost = new Blogpost;
