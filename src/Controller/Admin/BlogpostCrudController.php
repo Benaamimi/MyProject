@@ -4,10 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Blogpost;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BlogpostCrudController extends AbstractCrudController
 {
@@ -21,9 +24,9 @@ class BlogpostCrudController extends AbstractCrudController
     {
         return [
             TextField::new('titre'),
-            TextField::new('slug')->hideOnForm(),
+            SlugField::new('slug')->setTargetFieldName('titre'),
             TextareaField::new('contenu'),
-            DateField::new('createdAt')->hideOnForm(),
+            DateField::new('createdAt', 'Date de création')->hideOnForm(),
         ];
     }
 
@@ -32,5 +35,5 @@ class BlogpostCrudController extends AbstractCrudController
         return $crud
             ->setDefaultSort(['createdAt' => 'DESC']);
     }
-    
+
 }
