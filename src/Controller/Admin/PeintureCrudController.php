@@ -27,7 +27,7 @@ class PeintureCrudController extends AbstractCrudController
         return [
             TextField::new('nom'),
             TextareaField::new('description')->hideOnIndex(),
-            DateField::new('dateRealisation', 'Date de réalisation')->hideOnForm()->setFormat('dd.MM.yyyy'),
+            DateField::new('dateRealisation', 'Date de réalisation'),
             NumberField::new('largeur')->hideOnIndex(),
             NumberField::new('hauteur')->hideOnIndex(),
             NumberField::new('prix')->hideOnIndex(),
@@ -37,11 +37,12 @@ class PeintureCrudController extends AbstractCrudController
             // ImageField::new('file')->setBasePath('/uploads/peintures/')->onlyOnIndex(),
             ImageField::new('file')->setUploadDir('public/uploads/peintures')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->onlyWhenCreating(),
             ImageField::new('file')->setUploadDir('public/uploads/peintures')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->setFormTypeOptions(['required' => false])->onlyWhenUpdating(),
-
+            
             //affichage
             ImageField::new('file')->setBasePath('uploads/peintures')->hideOnForm(),
-
+            
             SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
+            DateField::new('createdAt', 'Date d\'enregistrement')->hideOnForm(),
             AssociationField::new('categorie'),
         ];
     }
@@ -49,10 +50,7 @@ class PeintureCrudController extends AbstractCrudController
     public function createEntity(string $entityFqcn)
     {
         $peinture = new $entityFqcn; 
-        $peinture
-        // ->setDateRealisation(new \DateTime())
-                ->setCreatedAt(new \DateTime());
-
+        $peinture->setCreatedAt(new \DateTime());
 
         return $peinture;
     }
