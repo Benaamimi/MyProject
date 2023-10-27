@@ -15,7 +15,7 @@ class BlogpostController extends AbstractController
     public function actualites(BlogpostRepository $blogpostRepository, PaginatorInterface $paginator, Request $request): Response
     {
         
-        $data = $blogpostRepository->findAll(); // recupérer tous les articles
+        $data = $blogpostRepository->findBy([], ['id' => 'DESC']); // recupérer tous les articles
         
         $blogposts = $paginator->paginate(
             $data,

@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\PeintureRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PeintureRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: PeintureRepository::class)]
+#[Vich\Uploadable]
 class Peinture
 {
     #[ORM\Id]
@@ -48,6 +52,9 @@ class Peinture
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'peinture_images', fileNameProperty: 'file')]
+    private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'peintures')]
     #[ORM\JoinColumn(nullable: false)]
@@ -202,6 +209,22 @@ class Peinture
         return $this;
     }
 
+    public function setImageFile(?File $file = null)
+    {
+        $this->imageFile = $file;
+
+        // It is required that at least one field changes if you are using doctrine
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            $this->createdAt = new \DateTime();
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -267,4 +290,5 @@ class Peinture
 
         return $this;
     }
+
 }
