@@ -5,7 +5,7 @@
 
 {% block body %}
 	{% set img = categorie.peintures|last %}
-	<section data-jarallax data-speed=".8" class="pt-12 pt-md-14 pb-12 pb-md-15 overlay overlay-black overlay-60 bg-cover jarallax" style="margin-top: -87px; background-image: url({{ img.file }});">
+	<section data-jarallax data-speed=".8" class="pt-12 pt-md-14 pb-12 pb-md-15 overlay overlay-black overlay-60 bg-cover jarallax" style="margin-top: -87px; background-image: url({{ asset('/img/backgroud.jpg')|imagine_filter('welcome') }});">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div
@@ -42,10 +42,10 @@
 					<div
 						class="col-12 col-md-4 resources">
 						<a
-							class="card shadow-light-lg mb-7" href="#!" data-bigpicture='{"imgSrc": "{{ peinture.file }}"}'>
+							class="card shadow-light-lg mb-7" href="#!" data-bigpicture='{"imgSrc": "{{ peinture.file|imagine_filter('full') }}"}'>
 							<div
 								class="card-zoom">
-								<img class="card-img" src="{{ peinture.file }}" alt="...">
+								<img class="card-img" src="{{ asset('/uploads/peintures/backgroud.jpg')|imagine_filter('portfolio') }}" alt="...">
 								{# apeller la variable img.file on accede la l'objet peinture  #}
 							</div>
 						</a>

@@ -27,7 +27,7 @@
 						<div class="row gx-0">
 
 							<a
-								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{ peinture.file }});" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
+								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{asset('/uploads/peintures/backgroud.jpg')|imagine_filter('miniature') }});" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
 
 								<!-- Image (placeholder) -->
 								<img
