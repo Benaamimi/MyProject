@@ -27,11 +27,11 @@
 						<div class="row gx-0">
 
 							<a
-								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{asset('/uploads/peintures/backgroud.jpg')|imagine_filter('miniature') }});" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
+								class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url({{ asset('/uploads/peintures/'~ peinture.file)|imagine_filter('miniature') }});" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
 
 								<!-- Image (placeholder) -->
 								<img
-								src="{{ peinture.file }}" alt="..." class="img-fluid d-md-none invisible">
+								src="{{ asset('/uploads/peintures/'~ peinture.file) }}" alt="..." class="img-fluid d-md-none invisible">
 
 								<!-- Shape -->
 								<div class="shape shape-start shape-fluid-y text-white d-none d-md-block">

@@ -46,7 +46,7 @@
 							<!-- Image -->
 							<div class="card-zoom">
                                 {# apeller la variable img.file pour acceder au chemin pour l'image  #}
-								<img class="card-img" src="{{img.file|imagine_filter('miniature') }}" alt="...">
+								<img class="card-img" src="{{asset('/uploads/peintures/'~ img.file)|imagine_filter('miniature') }}" alt="...">
 							</div>
 
 							<!-- Overlay -->

@@ -35,11 +35,11 @@ class PeintureCrudController extends AbstractCrudController
             BooleanField::new('portfolio'),
             // TextField::new('file')->onlyWhenCreating(),
             // ImageField::new('file')->setBasePath('/uploads/peintures/')->onlyOnIndex(),
-            ImageField::new('file')->setUploadDir('public/uploads/peintures')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->onlyWhenCreating(),
-            ImageField::new('file')->setUploadDir('public/uploads/peintures')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->setFormTypeOptions(['required' => false])->onlyWhenUpdating(),
+            ImageField::new('file')->setUploadDir('public/uploads/peintures/')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->onlyWhenCreating(),
+            ImageField::new('file')->setUploadDir('public/uploads/peintures/')->setUploadedFileNamePattern('[timestamp]-[slug]-[extension]')->setFormTypeOptions(['required' => false])->onlyWhenUpdating(),
             
             //affichage
-            ImageField::new('file')->setBasePath('uploads/peintures')->hideOnForm(),
+            ImageField::new('file')->setBasePath('uploads/peintures/')->hideOnForm(),
             
             SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
             DateField::new('createdAt', 'Date d\'enregistrement')->hideOnForm(),

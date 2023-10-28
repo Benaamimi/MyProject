@@ -88,7 +88,7 @@ class AppFixtures extends Fixture
                         ->setPortfolio($faker->randomElement([true, false]))
                         ->setSlug(strtolower($this->slugger->slug($peinture->getNom())))
                         // ->setFile($faker->imageUrl(1000,1000, true))
-                        ->setFile('/uploads/peintures/backgroud.jpg')
+                        ->setFile('/uploads/peintures/cuisine1.jpg')
                         ->addCategorie($categorie)
                         ->setPrix($faker->randomFloat(2, 100, 9999))
                         ->setUser($user) 
