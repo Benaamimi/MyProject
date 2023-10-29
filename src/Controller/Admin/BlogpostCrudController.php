@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BlogpostCrudController extends AbstractCrudController
@@ -24,6 +25,7 @@ class BlogpostCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            // AssociationField::new('user'),
             TextField::new('titre'),
             SlugField::new('slug')->setTargetFieldName('titre'),
             TextareaField::new('contenu'),
