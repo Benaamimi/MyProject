@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\BlogpostRepository;
+use App\Repository\CommentaireRepository;
+use App\Service\CommentaireService;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,14 +34,33 @@ class BlogpostController extends AbstractController
     }
     
     #[Route('/actualites/{slug}', name: 'actualites_detail')]
-    public function detail($slug, BlogpostRepository $blogpostRepository): Response
+    public function detail($slug, BlogpostRepository $blogpostRepository, Request $request, CommentaireService $commentaireService, CommentaireRepository $commentaireRepository): Response
     {
         $blogpost = $blogpostRepository->findOneBy([
             'slug' => $slug
         ]);
 
+        $commentaires = $commentaireRepository->findCommentaires($blogpost);
+        $commentaire = new Commentaire;
+
+        $form = $this->createForm(CommentaireType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $commentaire = $form->getData();
+
+            $commentaireService->persistCommentaire($commentaire, $blogpost, null); 
+
+            return $this->redirectToRoute('actualites_detail', [
+                'slug' => $blogpost->getSlug()
+            ]);
+        }
+
         return $this->render('blogpost/detail.html.twig',[
-            'blogpost' => $blogpost
+            'blogpost' => $blogpost,
+            'form' => $form->createView(),
+            'commentaires' => $commentaires
         ]);
     }
+
 }

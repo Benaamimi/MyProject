@@ -37,7 +37,7 @@
 
 						<!-- Image -->
 						<a class="card-img-top" href="{{ path('realisations_details', {'slug': peinture.slug}) }}">
-							<img src="{{ asset('/uploads/peintures/'~ peinture.file) }}" alt="..." class="card-img-top">
+							<img src="{{asset('/img/backgroud.jpg')|imagine_filter('miniature') }}" alt="..." class="card-img-top">
 						</a>
 
 						<a

@@ -33,16 +33,16 @@ class AppFixtures extends Fixture
         // création des users 
             $user = new User;
 
-            $password = $this->hasher->hashPassword($user, 'password');
+            // $password = $this->hasher->hashPassword($user, 'password');
     
             $user->setEmail('user@test.com')
                 ->setPrenom($faker->firstName())
                 ->setNom($faker->lastName())
-                ->setPassword($password)
+                ->setPassword('password')
                 ->setTelephone($faker->phoneNumber())
                 ->setAPropos($faker->text(400))
                 ->setInstagram('instagram')
-                ->setRoles(['ROLE_PEINTRE'])
+                ->setRoles(['ROLE_USER'])
             ;
     
             $manager->persist($user);
@@ -87,8 +87,8 @@ class AppFixtures extends Fixture
                         ->setDescription($faker->text())
                         ->setPortfolio($faker->randomElement([true, false]))
                         ->setSlug(strtolower($this->slugger->slug($peinture->getNom())))
-                        // ->setFile($faker->imageUrl(1000,1000, true))
-                        ->setFile('/uploads/peintures/cuisine1.jpg')
+                        ->setFile($faker->imageUrl(1000,1000, true))
+                        // ->setFile('/uploads/peintures/cuisine1.jpg')
                         ->addCategorie($categorie)
                         ->setPrix($faker->randomFloat(2, 100, 9999))
                         ->setUser($user) 
