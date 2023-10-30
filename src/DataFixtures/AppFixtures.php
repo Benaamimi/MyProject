@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
                 ->setTelephone($faker->phoneNumber())
                 ->setAPropos($faker->text(400))
                 ->setInstagram('instagram')
-                ->setRoles(['ROLE_USER'])
+                ->setRoles(['ROLE_ADMIN'])
             ;
     
             $manager->persist($user);
